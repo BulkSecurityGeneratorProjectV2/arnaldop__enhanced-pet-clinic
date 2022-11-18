@@ -18,6 +18,7 @@ package sample.ui.config;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.http11.Http11NioProtocol;
@@ -95,7 +96,7 @@ public class TomcatConfig {
 			try {
 				return resource.getFile();
 			} catch (Exception ex) {
-				File temp = File.createTempFile("keystore", ".tmp");
+				File temp = Files.createTempFile("keystore", ".tmp").toFile();
 				FileCopyUtils.copy(resource.getInputStream(), new FileOutputStream(temp));
 				return temp;
 			}
